@@ -1,0 +1,32 @@
+.container {
+  background: var(--dark);
+
+
+  .content{
+  display: flex;
+  justify-content: space-between;
+  padding: 4rem 2.5rem;
+  background: var(--dark);
+  max-width: 1400px;
+  margin: auto;
+
+  color: var(--background);
+  font-size: 0.8rem;
+
+  li{
+    list-style: none;
+    & + li {
+      margin-top: 1.5rem;
+    }
+  }
+  li:first-child{
+    color: var(--green);
+    font-weight: 600;
+  }
+
+
+  img{
+    width: 15rem
+  }
+  }
+}

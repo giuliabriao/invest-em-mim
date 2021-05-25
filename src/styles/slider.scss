@@ -1,0 +1,39 @@
+.swiper-button-next {
+    right: 65px;
+  }
+  .swiper-button-prev {
+    left: 65px;
+  }
+  .swiper-button-prev:after, .swiper-button-next:after{
+    color: #13c75b;
+  }
+  
+  .swiper-pagination-bullet{
+    width:16px;
+    height:16px;
+    background:var(--background);
+    opacity: 1;
+  }
+  
+  .swiper-pagination-bullet-active{
+    background:#13c75b ;
+  }
+  
+  @media(max-width:30em) {
+    .swiper-button-next {
+      right: 25px;
+    }
+    .swiper-button-prev {
+      left: 25px;
+    }
+  
+    .swiper-button-next:after,
+    .swiper-button-prev:after {
+      font-size:1.2rem;
+    }
+  
+    .swiper-pagination-bullet{
+      width:8px;
+      height:8px;
+    }
+  }

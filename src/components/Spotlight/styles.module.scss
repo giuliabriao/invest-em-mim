@@ -1,0 +1,51 @@
+.container{
+  margin-top: 1.5rem;
+  img{
+    width: 274px;
+    border-radius: 4px 4px 0 0;
+  };
+
+  width: 275px;
+  border: 1px solid var(--border);
+  border-radius: 5px 5px 4px 4px;
+
+  color: var(--text);
+
+  header{
+    padding: 1rem 1rem;
+  }
+
+  header :first-child{
+    color: var(--dark);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .goal{
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+
+    span{
+      font-weight: 600;
+      color: var(--green);
+    }
+  }
+
+  .progress{
+    margin: 1rem auto;
+    width: 90%;
+    height: 15px;
+
+    border-radius: 1rem;
+    border: 1px solid var(--green);
+
+    .mount{
+      
+      height: 100%;
+      background: var(--green);
+    }
+
+  }
+}

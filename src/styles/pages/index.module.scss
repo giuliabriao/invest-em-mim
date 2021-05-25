@@ -1,0 +1,31 @@
+.SpotlightSection{
+  width: 880px;
+  margin: auto;
+
+  .cards{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 5rem;
+  }
+  .icons{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 6rem;
+  }
+
+  h1{
+    color: var(--green);
+    font-weight: 600;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  h2{
+    color: var(--green);
+    font-weight: 600;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    margin: 3rem auto;
+    width: 600px;
+  }
+}
