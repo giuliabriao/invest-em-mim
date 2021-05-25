@@ -1,6 +1,6 @@
 // import Swiper core and required modules
-import SwiperCore, { Navigation, Pagination, A11y } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Navigation, Pagination, A11y } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 // install Swiper modules
 SwiperCore.use([Navigation, Pagination, A11y]);
@@ -18,15 +18,28 @@ export function Slider() {
         style={{ width: "100%", flex: "1" }}
       >
         <SwiperSlide>
-          <img src="/img/asia.png" alt="" />
+          <img src="/img/banner3.png" alt="" />
+          <p>
+            Negócios que cabem
+            <br />
+            no seu bolso.
+          </p>
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/img/asia.png" alt="" />
+          <img src="/img/banner2.png" alt="" />
+          <p>
+            Tudo na palma da sua mão
+            <br />e sem burocracias.
+          </p>
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/img/asia.png" alt="" />
+          <img src="/img/banner1.png" alt="" />
+          <p>
+            Invista, doe ou contribua
+            <br />
+            com as suas causas favoritas.
+          </p>
         </SwiperSlide>
-        
       </Swiper>
     </div>
   );
