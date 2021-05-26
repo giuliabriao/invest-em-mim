@@ -1,0 +1,11 @@
+.projectsContainer{
+    display: grid;
+    grid-template-areas:
+    "filter projects";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    width: 80%;
+    justify-items: center;
+    justify-self: center;
+    margin: 10rem;
+}
