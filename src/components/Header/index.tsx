@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
+import { Profile } from "../Profile";
 import { SignIn } from "../SignIn";
 import styles from "./styles.module.scss";
 
 export function Header() {
 
+  const { user } = useContext(AuthContext);
   const [modalSignIn, setModalSignIn] = useState(false);
   
   function handleClickSignIn(){
@@ -21,7 +24,10 @@ export function Header() {
           />
         </div>
 
-        <div className={styles.login}>
+       {user ? (
+         <Profile/>
+       ) : (
+          <div className={styles.login}>
           <div>
             <button 
               className={styles.headerButton}
@@ -33,6 +39,7 @@ export function Header() {
           </div>
           {modalSignIn ? <SignIn/>: ''}
         </div>
+       )}
        
       </nav>
     </div>

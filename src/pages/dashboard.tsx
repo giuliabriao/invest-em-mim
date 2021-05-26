@@ -1,11 +1,16 @@
 import { useContext } from "react";
+import { Header } from "../components/Header";
 import { AuthContext } from "../contexts/AuthContext";
 import { withSSRauth } from "../utils/withSSRauth";
 
 export default function Dashboard() {
   const { user } = useContext(AuthContext);
 
-  return <h1>{user?.email}</h1>;
+  return (
+    <>
+      <Header/>
+    </>
+  )
 }
 
 export const getServerSideProps = withSSRauth (async (ctx) => {
