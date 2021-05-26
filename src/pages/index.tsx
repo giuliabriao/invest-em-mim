@@ -1,3 +1,5 @@
+import { GetServerSideProps } from "next";
+import { parseCookies } from "nookies";
 import React from "react";
 import { Call } from "../components/Call";
 import { CategoryIcons } from "../components/CategoryIcons";
@@ -40,3 +42,16 @@ export default function Home() {
     </>
   );
 }
+
+// export const getServerSideProps: GetServerSideProps = async (ctx) => {
+//   const cookies = parseCookies(ctx);
+
+//   if(cookies['invest.token']) {
+//     return {
+//       redirect: {
+//         destination: '/dashboard',
+//         permanent: false,
+//       }
+//     }
+//   }
+// }
