@@ -1,11 +1,31 @@
+.projectsPageContainer{
+    display: flex;
+
+
+.filterContainer{
+    margin: 5rem;
+}
+
 .projectsContainer{
-    display: grid;
-    grid-template-areas:
-    "filter projects";
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
-    width: 80%;
-    justify-items: center;
-    justify-self: center;
-    margin: 10rem;
+    margin: 5rem;
+}
+
+.navPages{
+    display: flex;
+    justify-content: flex-end;
+
+    button{
+        padding: 0.5rem;
+        background: var(--green);
+        border: none;
+        border-radius: 4px;
+        color: var(--background);
+        font-weight: 300;
+        margin: 0.5rem;
+    }
+
+    button:hover{
+        background-color: var(--text);
+    }
+  }
 }

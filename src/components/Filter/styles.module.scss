@@ -2,10 +2,10 @@
     display: grid;
     grid-template-areas: 
     "title title"
-    "category number";
+    "category number"
+    "button button";
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
-    width: 80%;
+    grid-template-rows: auto auto auto;
     min-height: 10rem;
     align-self: center;
     grid-area: filter;
@@ -13,17 +13,21 @@
     border: solid 0.5px var(--text);
     border-radius: 8px;
     padding: 1rem;
+    justify-self: start;
+    margin-top: 1.5rem;
 
     h1{
         color: var(--dark);
-        // border-bottom: solid var(--text);
+        border-bottom: solid var(--text);
         grid-area: title;
         justify-self: left;
+        padding-bottom: 0.5rem;
     }
 
     ul{
         grid-area: category;
         list-style-type: none;
+        justify-self: left;
 
         li{
             color: var(--text);
@@ -48,6 +52,7 @@
         border-radius: 4px;
         color: var(--background);
         font-weight: 300;
+        grid-area: button;
     }
 
 }

@@ -9,18 +9,30 @@ export default function ProjectsPage() {
         <>
             <Header />
 
-            <section className={styles.projectsContainer}>
-                <Filter />
+            <main className={styles.projectsPageContainer}>
 
-                <Project />
-                {/* <Project />
-                <Project />
-                <Project />
-                <Project />
-                <Project />
-                <Project />
-                <Project /> */}
-            </section>
+                <section className={styles.filterContainer}>
+                    <Filter />
+                </section>
+
+                <section className={styles.projectsContainer}>
+                    <Project />
+                    <Project />
+                    <Project />
+                    <Project />
+                    <Project />
+                    <Project />
+                    <Project />
+                    <Project />
+
+                    <nav className={styles.navPages}>
+                        <button> 1 </button>
+                        <button> 2 </button>
+                        <button> 3 </button>
+                    </nav>
+                </section>
+
+            </main>
 
             <Footer />
         </>
