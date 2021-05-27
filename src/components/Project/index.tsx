@@ -1,34 +1,29 @@
 import styles from './styles.module.scss'
 
-export function Project() {
-  const pro = 67;
+export function Project(props) {
+  const projectProgress = (props.balance * 100)  / props.goal
 
   return (
     <>
       <section className={styles.projectContainer}>
 
-        <img src="./img/causa.jpeg" alt="" />
+        <img src={props.image} alt="" />
 
         <article className={styles.infosContainer}>
 
           <header>
-            <h3>Projeto Social Brasil</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-        nisi ut aliquip ex ea commodo consequat...{" "}
-            </p>
+            <h3>{props.title}</h3>
+            <p>{props.description}</p>
           </header>
 
-          <span className={styles.goal}> R$ 300.000</span>
+          <span className={styles.goal}> R$ {props.goal}</span>
 
-          <p className={styles.category}>Projeto Social</p>
+          <p className={styles.category}>{props.category}</p>
 
-          <p className={styles.reached}>R$ 10.000</p>
+          <p className={styles.reached}> R$ {props.balance}</p>
 
           <div className={styles.progress}>
-            <div style={{ width: `${pro}%` }} className={styles.mount}></div>
+            <div style={{ width: `${projectProgress}%` }} className={styles.mount}></div>
           </div>
 
         </article>
