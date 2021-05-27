@@ -1,8 +1,6 @@
-import console from "console";
-import {  GetStaticProps } from "next";
-import { format } from 'date-fns';
-import { ptBR } from 'date-fns/locale';
-import React from "react";
+import { GetStaticProps } from "next";
+import { format } from "date-fns";
+import { ptBR } from "date-fns/locale";
 import { Call } from "../components/Call";
 import { CategoryIcons } from "../components/CategoryIcons";
 import { Footer } from "../components/Footer";
@@ -12,7 +10,7 @@ import { Spotlight } from "../components/Spotlight";
 import { api } from "../services/api";
 import styles from "../styles/pages/index.module.scss";
 
-export default function Home() {
+export default function Home({ spotlights }) {
   return (
     <>
       <Header />
@@ -23,15 +21,24 @@ export default function Home() {
         <h1>Campanhas em destaque</h1>
 
         <div className={styles.cards}>
-          <Spotlight />
-          <Spotlight />
-          <Spotlight />
-          <Spotlight />
-          <Spotlight />
-          <Spotlight />
+          {spotlights.map((item) => {
+            return (
+              <Spotlight
+                key={item.id}
+                title={item.title}
+                description={item.description}
+                category={item.category}
+                image={item.image}
+                goal={item.goal}
+                balance={item.balance}
+              />
+            );
+          })}
         </div>
 
-        <h2>Escolha uma das causas <br/> para investir.</h2>
+        <h2>
+          Escolha uma das causas <br /> para investir.
+        </h2>
 
         <div className={styles.icons}>
           <CategoryIcons icon="startup" />
@@ -41,48 +48,39 @@ export default function Home() {
           <CategoryIcons icon="animal" />
         </div>
       </section>
-      <Footer/>
+      <Footer />
     </>
   );
 }
 
-
 export const getStaticProps: GetStaticProps = async () => {
+  const { data } = await api.get("/projects");
 
-  const response = await api.get('/projects')
-  const projects = response.data;
-
-  const teste = projects.map(project => {
+  const projects = data.map((project) => {
     return {
-    id: project.id,
-    title: project.title,
-    description: project.description,
-    category: project.category,
-    image: project.image,
-    valuation: project.valuation,
-    address: project.address,
-    goal: project.goal,
-    balance: project.balance,
-    date_limit: format(
-      new Date(project.date_limit),
-      'dd MMM yyyy',
-      {
+      id: project.id,
+      title: project.title,
+      description: project.description.slice(0, 85),
+      category: project.category,
+      image: project.image,
+      valuation: project.valuation,
+      address: project.address,
+      goal: project.goal,
+      balance: project.balance,
+      date_limit: format(new Date(project.date_limit), "dd MMM yyyy", {
         locale: ptBR,
-      }
-    ),
-    account: project.account,
-    user_id: project.user_id,
-    // "created_at": "2021-05-17T20:46:57.968Z",
-    // "updated_at": "2021-05-17T20:46:57.968Z",
-    // "deleted_at": null
-    }
-  })
-  console.log(teste)
+      }),
+      account: project.account,
+      user_id: project.user_id,
+    };
+  });
 
+  const spotlights = projects.slice(0, 6);
+  console.log(spotlights);
   return {
     props: {
-      projects
+      spotlights,
     },
     revalidate: 60 * 60 * 24, //24 horas
   };
-}
+};

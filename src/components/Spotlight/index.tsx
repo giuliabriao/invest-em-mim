@@ -1,24 +1,25 @@
 import styles from "./styles.module.scss";
 
-export function Spotlight() {
-  const pro = 67;
+export function Spotlight(props) {
+
+  const progressGoal = (props.balance * 100) / props.goal
+
   return (
     <div className={styles.container}>
-      <img src="./img/causa.jpeg" alt="" />
+      <img src={props.image} alt="" />
       <header>
-        <p>Projeto Social Brasil</p>
+        <p>{props.title}</p>
         <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry.{" "}
+        {props.description}
         </p>
       </header>
       <div>
         <div className={styles.goal}>
-          <p>Projeto Social</p>
-          <span> R$ 300.000</span>
+          <p>{props.category}</p>
+          <span>R$ {props.goal}</span>
         </div>
         <div className={styles.progress}>
-          <div style={{ width: `${pro}%` }} className={styles.mount}></div>
+          <div style={{ width: `${progressGoal}%` }} className={styles.mount}></div>
         </div>
       </div>
     </div>

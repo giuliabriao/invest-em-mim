@@ -2,6 +2,7 @@ import { createContext, ReactNode, useEffect, useState } from "react";
 import { api } from "../services/api";
 import Router from "next/router";
 import { setCookie, parseCookies, destroyCookie } from "nookies";
+import { toast } from 'react-toastify';
 
 type signInCredentials = {
   email: string;
@@ -101,10 +102,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
       });
 
       api.defaults.headers["Authorization"] = `Bearer ${token}`;
-
+      toast.success('Iniciando a sessao');
       Router.push("/dashboard");
-    } catch (error) {
-      console.log(error)
+    } catch {
+      toast.error('Email ou senha invalidos');
     }
   }
 

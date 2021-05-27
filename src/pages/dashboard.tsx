@@ -13,9 +13,3 @@ export default function Dashboard() {
   )
 }
 
-export const getServerSideProps = withSSRauth (async (ctx) => {
-
-  return { 
-    props: {}
-  }
-})

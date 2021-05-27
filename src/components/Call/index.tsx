@@ -5,9 +5,9 @@ export function Call(){
     <div className={styles.container}>
       <div>
         <h1>
-          Uma frase bem bacana <br/> 
-          sobre a plataforma<br/>
-          invest em mim bem aqui
+        O elo entre sua liberdade  <br/> 
+        financeira e o sonho<br/>
+        de empreender.
         </h1>
         <button>Cadastrar-se</button>
       </div>
