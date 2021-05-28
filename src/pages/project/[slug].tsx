@@ -27,13 +27,13 @@ type ProjectProps = {
 
 export default function Project({ project }: ProjectProps) {
   const progressGoal = (project.balance * 100) / project.goal;
-
+  const { id } = parseCookies();
   const { newTransaction } = useContext(TransactionsContext);
   const [value, setValue] = useState("");
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
-    const { id } = parseCookies();
+    
 
     const data = {
       value,
@@ -95,8 +95,12 @@ export default function Project({ project }: ProjectProps) {
                 placeholder="Digite o valor"
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
+                
               />
-              <button type="submit">
+              <button 
+                type="submit"
+                disabled={id? false : true}
+              >
                 <img src="/img/logo-green.png" />
                 investir
               </button>
@@ -104,6 +108,7 @@ export default function Project({ project }: ProjectProps) {
           </div>
         </div>
       </div>
+      <div className={styles.divider}>.</div>
       <Footer />
     </>
   );
