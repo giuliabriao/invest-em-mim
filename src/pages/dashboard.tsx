@@ -4,15 +4,17 @@ import { withSSRauth } from "../utils/withSSRauth";
 import styles from "../styles/pages/dashboard.module.scss";
 import { FaArrowAltCircleUp, FaArrowAltCircleDown } from "react-icons/fa";
 import { AiFillDollarCircle } from "react-icons/ai";
+import { IoMdAddCircle } from 'react-icons/io';
 import { Footer } from "../components/Footer";
 import { Recives } from "../components/Recive";
 import { Sends } from "../components/Sends";
 import { TransactionsContext } from "../contexts/TransactionsContext";
 import Head from "next/head";
+import { ModalNewProject } from "../components/ModalNewProject";
 
 export default function Dashboard() {
   const [totals, setTotals] = useState(true);
-  const { myProjects, myInvestments, totalReceipt, totalInvested } = useContext(TransactionsContext);
+  const { isModalNewProjectOpen, setIsModalNewProjectOpen, myProjects, myInvestments, totalReceipt, totalInvested } = useContext(TransactionsContext);
 
   return (
     <>
@@ -48,6 +50,15 @@ export default function Dashboard() {
               <AiFillDollarCircle />
             </span>
             <p>Saldo</p>
+          </div>
+
+          <div className={styles.newProject}>
+            <button
+              onClick={() =>setIsModalNewProjectOpen(!isModalNewProjectOpen)}
+            >
+              <IoMdAddCircle/>
+            </button>
+            {isModalNewProjectOpen && <ModalNewProject/>}
           </div>
         </div>
 

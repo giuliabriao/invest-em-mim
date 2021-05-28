@@ -1,29 +1,27 @@
-
-.container{
+.container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  .banner{
+  .banner {
     width: 100%;
     height: 450px;
     overflow: hidden;
     position: relative;
     margin-bottom: 60rem;
-  
-    img{
+
+    img {
       width: 100%;
       margin-top: 5rem;
       margin-bottom: 500px;
     }
   }
 
-  .content{
-    position:absolute;
+  .content {
+    position: absolute;
     top: 17rem;
 
-    
     width: 75%;
     margin: auto;
     padding: 2.5rem 4.5rem;
@@ -48,26 +46,22 @@
       }
     }
 
-  
-    .progress{
+    .progress {
       margin: 1.5rem auto;
       width: 90%;
       height: 15px;
-  
+
       border-radius: 1rem;
       border: 1px solid var(--green);
-  
-      .mount{
-        
+
+      .mount {
         height: 100%;
         background: var(--green);
       }
-  
     }
 
-    span{
-
-      p{
+    span {
+      p {
         color: var(--text);
         text-align: justify;
         text-justify: inter-word;
@@ -89,7 +83,7 @@
       flex-direction: column;
       margin-top: 3rem;
       width: 200px;
-     
+
       input {
         border: 1px solid var(--border);
         border-radius: 4px;
@@ -97,7 +91,7 @@
       }
     }
 
-    button{
+    button {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -108,9 +102,9 @@
 
       border: none;
       border-radius: 4px;
-      
+
       background: var(--green);
-      
+
       color: var(--white);
       font-weight: 500;
       font-size: 1.2rem;
@@ -120,19 +114,26 @@
       }
     }
 
-    .invest{
+    button:disabled {
+      background: var(--border);
+      cursor: not-allowed;
+    }
+
+    .invest {
       display: flex;
       align-items: center;
       justify-content: space-between;
+
+     
 
       strong {
         color: var(--green);
         margin-left: 0.5rem;
       }
     }
-
   }
 }
 
-
-
+.divider {
+  margin: 2.5rem 0;
+}

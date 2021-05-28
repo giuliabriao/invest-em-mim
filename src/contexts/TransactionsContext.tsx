@@ -49,6 +49,9 @@ type ProjectsData = {
   setReload: (reload: boolean) => void;
   newTransaction(data: TransactionProps): Promise<void>;
   reload: boolean;
+  isModalNewProjectOpen: boolean;
+  setIsModalNewProjectOpen: (modal: boolean) => void;
+  
 };
 
 export const TransactionsContext = createContext({} as ProjectsData);
@@ -57,6 +60,7 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
   const [myProjects, setMyProject] = useState([]);
   const [myInvestments, setMyInvestments] = useState([]);
   const [reload, setReload] = useState(false);
+  const [ isModalNewProjectOpen, setIsModalNewProjectOpen] = useState(false);
 
   useEffect(() => {
     const { id } = parseCookies();
@@ -135,7 +139,9 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
         setReload,
         reload,
         deleteProject,
-        newTransaction
+        newTransaction,
+        isModalNewProjectOpen, 
+        setIsModalNewProjectOpen
       }}
     >
       {children}
