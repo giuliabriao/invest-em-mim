@@ -1,0 +1,25 @@
+.listProjects{
+  box-sizing: border-box;
+
+  display: grid;
+  grid-template-columns:  1fr 1.4fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+  margin-top: 1rem;
+
+  background: var(--white);
+  color: var(--text);
+
+  height: 60px;
+  border-radius: 4px;
+
+  .balance{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90px;
+    svg{
+      color: red;
+    }
+  }
+}

@@ -91,6 +91,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
         path: "/",
       });
 
+      setCookie(undefined, "id", id, {
+        maxAge: 60 * 60 * 24 * 30,
+        path: "/",
+      });
+
       setUser({
         email,
         avatar,

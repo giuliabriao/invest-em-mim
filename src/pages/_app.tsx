@@ -12,6 +12,7 @@ import "swiper/components/pagination/pagination.scss";
 import "../styles/slider.scss";
 import { AuthProvider } from "../contexts/AuthContext";
 import { ToastContainer } from "react-toastify";
+import { TransactionsProvider } from "../contexts/TransactionsContext";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -20,7 +21,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         <title>Invest em mim | Home</title>
       </Head>
       <AuthProvider>
-        <Component {...pageProps} />
+        <TransactionsProvider>
+          <Component {...pageProps} />
+        </TransactionsProvider>
         <ToastContainer />
       </AuthProvider>
     </>
