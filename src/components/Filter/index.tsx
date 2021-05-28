@@ -1,17 +1,25 @@
 import styles from './styles.module.scss'
 
-export function Filter() {
+export function Filter(props) {
+
+  const categories = props.p.map( (project) => {
+    return project.category
+    })
+
   return (
     <>
       <section className={styles.filterContainer}>
-        
+
         <h1>Filtrar campanhas</h1>
         <ul>
-          <li><a href="/#">Startup</a></li>
-          <li><a href="/#">Comercios</a></li>
-          <li><a href="/#">Ambientais</a></li>
-          <li><a href="/#">Sociais</a></li>
-          <li><a href="/#">Causas animais</a></li>
+          {/* {categories.map((category) => {
+            <li><a onClick={props.fn(category)}>Startup</a></li>
+          })} */}
+          <li><a href={props.startup}>Startup</a></li>
+          <li><a href="/projects?category=comercio">Comercios</a></li>
+          <li><a href="/projects?category=ambiental">Ambientais</a></li>
+          <li><a href="/projects?category=social">Sociais</a></li>
+          <li><a href="/projects?category=animal">Causas animais</a></li>
         </ul>
 
         <ul className={styles.filterNumbers}>

@@ -12,12 +12,14 @@ import ReactPaginate from 'react-paginate';
 
 export default function ProjectsPage({ treatedProjects, pageCount }) {
 
-    const [projects, setProjects] = useState(treatedProjects);
     // const [pageCount, setPageCount] = useState(1);
     // const [isLoaded, setIsLoaded] = useState(false);
-    const [currentPage, setCurrentPage] = useState(1);
+    const [filteredProjects, setFilteredProjects] = useState("")
+    // const [currentPage, setCurrentPage] = useState(1);
+    const [projects, setProjects] = useState(treatedProjects);
 
-    const handleAPICall = async () => {
+    const handleAPICall = async (currentPage) => {
+        console.log(currentPage);
 
         const projects = await api.get(`/projects?page=${currentPage}`)
 
@@ -48,9 +50,63 @@ export default function ProjectsPage({ treatedProjects, pageCount }) {
     };
 
     const handlePageChange = (selectedObject) => {
-        setCurrentPage(selectedObject.selected + 1);
-        handleAPICall();
+        console.log(selectedObject);
+
+        // setCurrentPage(selectedObject.selected + 1);
+        handleAPICall(selectedObject.selected + 1);
     };
+
+    const filterProjects = async (category) => {
+        const request = await api.get(`/projects?category=${category}`)
+
+        const treatedFilteredProjects = request.data.map((obj) => {
+            return {
+                id: obj.id,
+                title: obj.title,
+                description: obj.description,
+                category: obj.category,
+                image: obj.image,
+                valuation: obj.valuation,
+                address: obj.address,
+                goal: obj.goal,
+                balance: obj.balance,
+                date_limit: format(
+                    new Date(obj.date_limit),
+                    'dd/MM/yyyy',
+                    {
+                        locale: ptBR,
+                    }
+                ),
+                account: obj.account,
+                user_id: obj.user_id,
+            }
+        })
+
+        setProjects(treatedFilteredProjects)
+    }
+    
+    const categories = [
+        {
+            description: "Startups",
+            value: "startup"
+        },
+        {
+            description: "Comércios",
+            value: "comercio"
+        },
+        {
+            description: "Sociais",
+            value: "social"
+        },
+        {
+            description: "Ambientais",
+            value: "ambiental"
+        },
+        {
+            description: "Causas animais",
+            value: "animal"
+        },
+    ]
 
     return (
         <>
@@ -59,7 +115,18 @@ export default function ProjectsPage({ treatedProjects, pageCount }) {
             <main className={styles.projectsPageContainer}>
 
                 <section className={styles.filterContainer}>
-                    <Filter />
+                    <h1>Filtrar campanhas</h1>
+
+                    <ul>
+                        {categories.map((category) => {
+                            return (
+                                <li key={category.value}>
+                                    <a onClick={() => filterProjects(category.value)}>{category.description}</a>
+                                </li>
+                            )
+                        })}
+                    </ul>
+
                 </section>
 
                 <section className={styles.projectsContainer}>
@@ -80,19 +147,19 @@ export default function ProjectsPage({ treatedProjects, pageCount }) {
                         )
                     })}
 
-                        <ReactPaginate
-                                pageCount={pageCount}
-                                pageRangeDisplayed={pageCount}
-                                marginPagesDisplayed={2}
-                                onPageChange={handlePageChange}
-                                containerClassName={styles.container}
-                                previousLinkClassName={styles.page}
-                                breakClassName={styles.page}
-                                nextLinkClassName={styles.page}
-                                pageClassName={styles.page}
-                                disabledClassName={styles.disabled}
-                                activeClassName={styles.active}
-                            />
+                    <ReactPaginate
+                        pageCount={pageCount}
+                        pageRangeDisplayed={1}
+                        marginPagesDisplayed={2}
+                        onPageChange={handlePageChange}
+                        containerClassName={styles.container}
+                        previousLinkClassName={styles.page}
+                        breakClassName={styles.page}
+                        nextLinkClassName={styles.page}
+                        pageClassName={styles.page}
+                        disabledClassName={styles.disabled}
+                        activeClassName={styles.active}
+                    />
 
                 </section>
 
