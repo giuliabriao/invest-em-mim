@@ -63,6 +63,7 @@ export default function Dashboard() {
               <p>Início</p>
               <p>Fim</p>
               <p>Ações</p>
+              <p>Deletar</p>
             </div>
             {myProjects.map((project) => {
               return (
@@ -73,6 +74,8 @@ export default function Dashboard() {
                   balance={project.balance}
                   create={project.created_at}
                   limit={project.date_limit}
+                  description={project.description}
+                  deleted={project.deleted_at}
                 />
               );
             })}
@@ -82,8 +85,8 @@ export default function Dashboard() {
             <h3>Meus Investimentos</h3>
             <div className={styles.titles}>
               <p>id</p>
+              <p>Investimento</p>
               <p>Data</p>
-              <p>investimento</p>
               <p>Valor investido</p>
               <p>Status</p>
             </div>

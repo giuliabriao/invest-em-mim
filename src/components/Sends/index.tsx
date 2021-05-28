@@ -7,10 +7,11 @@ export function Sends(props) {
   return (
     <div className={styles.listProjects} key={props.id}>
       <p>{props.id}</p>
+      <p>{props.receptor}</p>
+      
       <p>{format(new Date(props.date), "dd MMM yyyy", {
           locale: ptBR,
         })}</p>
-      <p>{props.receptor}</p>
 
       <span className={styles.balance}>
         <p>{props.amount}</p>

@@ -11,11 +11,13 @@ type TransactionsProviderProps = {
 type Projects = {
   title: string;
   id: number;
-  category:string;
+  category: string;
   balance: number;
   created_at: string;
-  date_limit: string
-}
+  date_limit: string;
+  deleted_at: string;
+  description: string;
+};
 
 type Investment = {
   id: number;
@@ -23,58 +25,95 @@ type Investment = {
   date: string;
   sender: number;
   receptor: number;
-}
+};
+
+type EditProjectData = {
+  title: string;
+  description: string;
+  id: number;
+};
 
 type ProjectsData = {
   myProjects: Projects[];
   myInvestments: Investment[];
   totalReceipt: number;
   totalInvested: number;
-}
+  editProject(data: EditProjectData): Promise<void>;
+  deleteProject(id: number): Promise<void>;
+  setReload: (reload: boolean) => void;
+  reload: boolean;
+};
 
+export const TransactionsContext = createContext({} as ProjectsData);
 
-
-export const TransactionsContext = createContext({} as ProjectsData );
-
-
-export function TransactionsProvider( {children}:TransactionsProviderProps ){
-  
+export function TransactionsProvider({ children }: TransactionsProviderProps) {
   const [myProjects, setMyProject] = useState([]);
   const [myInvestments, setMyInvestments] = useState([]);
+  const [reload, setReload] = useState(false);
 
   useEffect(() => {
     const { id } = parseCookies();
 
     try {
-      if(id) {
+      if (id) {
         api.get(`/projects?user_id=${id}`).then((response) => {
           setMyProject(response.data);
         });
-    
+
         api.get(`/transactions?sender=${id}`).then((response) => {
           setMyInvestments(response.data);
         });
       }
     } catch {
-      toast.error('Tente novamente em alguns segundos');
+      toast.error("Tente novamente em alguns segundos");
       signOut();
     }
-  }, []);
+  }, [reload]);
+
+  async function editProject({ title, description, id }) {
+    try {
+      await api.put(`/projects/${id}`, {
+        title,
+        description,
+      });
+      toast.success("Projeto editado com sucesso");
+    } catch {
+      toast.error("Ocorreu um erro, tente novamente.");
+    }
+  }
+
+  async function deleteProject(id) {
+    try {
+      await api.delete(`/projects/${id}`);
+      setReload(!reload)
+      toast.success("Projeto deletado com sucesso");
+    } catch {
+      toast.error("Ocorreu um erro, tente novamente.");
+    }
+  }
 
   const totalReceipt = myProjects.reduce((sum, total) => {
     return sum + total.balance;
-  }, 0)
+  }, 0);
 
   const totalInvested = myInvestments.reduce((sum, total) => {
     return sum + total.value;
-  }, 0)
+  }, 0);
 
   return (
-    <TransactionsContext.Provider value={{myProjects, myInvestments, totalReceipt, totalInvested}}>
+    <TransactionsContext.Provider
+      value={{
+        myProjects,
+        myInvestments,
+        totalReceipt,
+        totalInvested,
+        editProject,
+        setReload,
+        reload,
+        deleteProject
+      }}
+    >
       {children}
     </TransactionsContext.Provider>
-  )
-
-
-
+  );
 }

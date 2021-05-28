@@ -1,0 +1,114 @@
+.projectsPageContainer{
+    display: flex;
+    justify-content: space-around;
+    padding: 5rem;
+
+    .filterContainer{
+        display: grid;
+        grid-template-areas: 
+        "title title"
+        "category number"
+        "button button";
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto auto;
+        grid-area: filter;
+        gap: 20px;
+        border: solid 0.5px var(--text);
+        border-radius: 8px;
+        padding: 1rem;
+        justify-self: start;
+    
+        h1{
+            color: var(--dark);
+            border-bottom: solid var(--text);
+            grid-area: title;
+            justify-self: left;
+            padding-bottom: 0.5rem;
+        }
+    
+        ul{
+            grid-area: category;
+            list-style-type: none;
+            justify-self: left;
+    
+            li{
+                color: var(--text);
+                
+                font-size: 20px;
+
+                a{
+                    cursor: pointer;
+                }
+    
+                a:hover{
+                    color: var(--green);
+                }
+            }
+        }
+    
+        .filterNumbers{
+            grid-area: number;
+            margin: 1rem;
+            justify-self: flex-end;
+        }
+    
+        button{
+            padding: 0.5rem;
+            background: var(--green);
+            border: none;
+            border-radius: 4px;
+            color: var(--background);
+            font-weight: 300;
+            grid-area: button;
+        }
+    
+    }
+
+.projectsContainer{
+    margin: 5rem;
+}
+
+        .container{
+            display: flex;
+            list-style: none;
+            margin: 1rem;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .page{
+            padding: 10px;
+            border: 1px solid #dcdcdc;
+            border-radius: 6px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .disabled{
+            cursor: not-allowed;
+            
+        }
+
+        .active{
+            border: 2px solid var(--green);
+            font-weight: bold;
+        }
+
+        .previous{
+            padding: 10px;
+            border-radius: 6px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .break{
+            padding: 10px;
+        }
+
+        .next{
+            padding: 10px;
+            border-radius: 6px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+    }

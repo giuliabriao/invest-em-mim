@@ -2,7 +2,7 @@
   box-sizing: border-box;
 
   display: grid;
-  grid-template-columns:  1fr 1.4fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns:  1fr 1.4fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   align-items: center;
   justify-items: center;
   margin-top: 1rem;
@@ -13,6 +13,18 @@
   height: 60px;
   border-radius: 4px;
 
+  button {
+    background: transparent;
+    border: none;
+    color: var(--green);
+  }
+
+  button:disabled {
+    color: var(--text);
+    cursor: not-allowed;
+
+}
+
   .balance{
     display: flex;
     align-items: center;
@@ -21,5 +33,10 @@
     svg{
       color: var(--green);
     }
+    
   }
+}
+
+.deleted{
+  filter: brightness(0.8)
 }

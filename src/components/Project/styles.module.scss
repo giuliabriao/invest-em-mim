@@ -1,0 +1,95 @@
+.projectContainer{
+    margin-top: 1.5rem;
+    grid-area: projects;
+    width: 100%;
+    display: grid;
+    grid-template-areas: 
+    "image infos";
+    grid-template-columns: auto auto ;
+    grid-template-rows: auto;
+    border: 1px solid var(--border);
+    border-radius: 5px 5px 4px 4px;      
+    color: var(--text);
+
+      img{
+        // width: 274px;
+        border-radius: 4px 4px 0 0;
+        grid-area: image;
+        align-self: center;
+      };
+
+      .infosContainer{
+
+        display: grid;
+        grid-template-areas:
+        "title title goal"
+        "text text text"
+        "category category reached"
+        "progress progress progress";
+        grid-template-columns: auto auto auto;
+        grid-template-rows: auto auto auto auto;
+    
+      header{
+          padding: 1rem 1rem;
+
+          h3{
+            color: var(--dark);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            grid-area: title;
+          }
+
+          p{
+            font-size: 15px;
+            grid-area: text;
+          }
+      }
+
+      .goal{
+        padding: 0 1rem;
+        margin-top: 1.5rem;
+        grid-area: goal;
+        color: var(--green);
+        font-size: 25px;
+        font-weight: 600;
+        align-self: flex-start;
+      }
+
+      .category{
+        grid-area: category;
+        width: fit-content;
+        margin-left: 1rem;
+        font-size: 13px;
+        font-weight: bold;
+        align-self: end;
+      }
+
+      .reached{
+        grid-area: reached;
+        width: fit-content;
+        justify-self: end;
+        margin-right: 2rem;
+        font-size: 13px;
+        color: var(--green);
+      }
+  
+    
+      .progress{
+          margin: 1rem auto;
+          width: 90%;
+          height: 15px;
+      
+          border-radius: 1rem;
+          border: 1px solid var(--green);
+          grid-area: progress;
+          /* topo | direita | inferior | esquerda */
+          margin: 0 1rem 1rem 1rem;
+          justify-self: center;
+
+          .mount{        
+            height: 100%;
+            background: var(--green);
+          }  
+      }
+    }
+}
