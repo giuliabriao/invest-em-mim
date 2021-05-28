@@ -19,7 +19,7 @@ export function Header() {
       
         <div>
           <img
-            src="./img/logo.png"
+            src="/img/logo.png"
             alt="Logotipo Invest em mim, com mascote da carinha sorrindo"
           />
         </div>

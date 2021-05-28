@@ -9,7 +9,7 @@ import { Slider } from "../components/Slider";
 import { Spotlight } from "../components/Spotlight";
 import { api } from "../services/api";
 import styles from "../styles/pages/index.module.scss";
-
+import Link from 'next/link';
 export default function Home({ spotlights }) {
   return (
     <>
@@ -23,7 +23,9 @@ export default function Home({ spotlights }) {
         <div className={styles.cards}>
           {spotlights.map((item) => {
             return (
-              <Spotlight
+              <Link href={`/project/${item.id}`}>
+                <a>
+                <Spotlight
                 key={item.id}
                 title={item.title}
                 description={item.description}
@@ -32,6 +34,8 @@ export default function Home({ spotlights }) {
                 goal={item.goal}
                 balance={item.balance}
               />
+                </a>
+              </Link>
             );
           })}
         </div>

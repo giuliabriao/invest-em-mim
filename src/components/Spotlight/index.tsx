@@ -1,17 +1,14 @@
 import styles from "./styles.module.scss";
 
 export function Spotlight(props) {
-
-  const progressGoal = (props.balance * 100) / props.goal
+  const progressGoal = (props.balance * 100) / props.goal;
 
   return (
     <div className={styles.container}>
       <img src={props.image} alt="" />
       <header>
         <p>{props.title}</p>
-        <p>
-        {props.description}
-        </p>
+        <p>{props.description}</p>
       </header>
       <div>
         <div className={styles.goal}>
@@ -19,7 +16,10 @@ export function Spotlight(props) {
           <span>R$ {props.goal}</span>
         </div>
         <div className={styles.progress}>
-          <div style={{ width: `${progressGoal}%` }} className={styles.mount}></div>
+          <div
+            style={{ width: `${progressGoal}%` }}
+            className={styles.mount}
+          ></div>
         </div>
       </div>
     </div>

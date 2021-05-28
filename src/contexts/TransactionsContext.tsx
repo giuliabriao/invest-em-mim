@@ -33,6 +33,12 @@ type EditProjectData = {
   id: number;
 };
 
+type TransactionProps = {
+  value: string;
+  sender: string;
+  receptor: number;
+}
+
 type ProjectsData = {
   myProjects: Projects[];
   myInvestments: Investment[];
@@ -41,6 +47,7 @@ type ProjectsData = {
   editProject(data: EditProjectData): Promise<void>;
   deleteProject(id: number): Promise<void>;
   setReload: (reload: boolean) => void;
+  newTransaction(data: TransactionProps): Promise<void>;
   reload: boolean;
 };
 
@@ -82,6 +89,23 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
     }
   }
 
+
+  async function newTransaction({ value, sender, receptor}) {
+    try {
+      await api.post('/transactions', {
+        value,
+        date: new Date(),
+        sender,
+        receptor
+      });
+      toast.success("Transação efetuada com sucesso");
+    } catch {
+      toast.error("Ocorreu um erro, falha na transação.");
+    }
+  }
+
+
+
   async function deleteProject(id) {
     try {
       await api.delete(`/projects/${id}`);
@@ -110,7 +134,8 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
         editProject,
         setReload,
         reload,
-        deleteProject
+        deleteProject,
+        newTransaction
       }}
     >
       {children}
