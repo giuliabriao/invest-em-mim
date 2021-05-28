@@ -16,7 +16,8 @@
         border: solid 0.5px var(--text);
         border-radius: 8px;
         padding: 1rem;
-        justify-self: start;
+        align-self: baseline;
+        margin: 7rem;
     
         h1{
             color: var(--dark);
@@ -30,13 +31,27 @@
             grid-area: category;
             list-style-type: none;
             justify-self: left;
+
+            .allCategories{
+                color: var(--dark);
+                margin: 0.5rem;
+                font-size: 25px;
+                font-weight: 500;
+            }
     
             li{
-                color: var(--text);
-                
-                font-size: 20px;
+                display: flex;
+                padding: 1rem;
+                align-items: center;
+
+                img{
+                    width: 50px;
+                }
 
                 a{
+                    margin-left: 1rem;
+                    font-weight:700;
+                    color: var(--text);
                     cursor: pointer;
                 }
     

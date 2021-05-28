@@ -12,10 +12,6 @@ import ReactPaginate from 'react-paginate';
 
 export default function ProjectsPage({ treatedProjects, pageCount }) {
 
-    // const [pageCount, setPageCount] = useState(1);
-    // const [isLoaded, setIsLoaded] = useState(false);
-    const [filteredProjects, setFilteredProjects] = useState("")
-    // const [currentPage, setCurrentPage] = useState(1);
     const [projects, setProjects] = useState(treatedProjects);
 
     const handleAPICall = async (currentPage) => {
@@ -57,7 +53,12 @@ export default function ProjectsPage({ treatedProjects, pageCount }) {
     };
 
     const filterProjects = async (category) => {
-        const request = await api.get(`/projects?category=${category}`)
+        let url = `/projects`
+
+        if(category && category !== ""){
+             url += `?category=${category}`
+        }
+        const request = await api.get(url)
 
         const treatedFilteredProjects = request.data.map((obj) => {
             return {
@@ -88,24 +89,30 @@ export default function ProjectsPage({ treatedProjects, pageCount }) {
     const categories = [
         {
             description: "Startups",
-            value: "startup"
+            value: "startup",
+            icon: '../../icons/startup.png'
         },
         {
             description: "Comércios",
-            value: "comercio"
+            value: "comercio",
+            icon: "../../icons/comércio.png"
+
         },
         {
             description: "Sociais",
-            value: "social"
+            value: "social",
+            icon: "../../icons/social.png"
         },
         {
             description: "Ambientais",
-            value: "ambiental"
+            value: "ambiental",
+            icon: "../../icons/ambiental.png"
         },
         {
             description: "Causas animais",
-            value: "animal"
-        },
+            value: "animal",
+            icon: "../../icons/animal.png"
+        }
     ]
 
     return (
@@ -121,11 +128,14 @@ export default function ProjectsPage({ treatedProjects, pageCount }) {
                         {categories.map((category) => {
                             return (
                                 <li key={category.value}>
-                                    <a onClick={() => filterProjects(category.value)}>{category.description}</a>
+                                    <img src={category.icon}></img>
+                                    <a onClick={() => filterProjects(category.value)}>{category.description}</a>                                     
                                 </li>
                             )
                         })}
+                        <li><a className="allCategories" onClick={() => filterProjects("")}>Ver todas</a></li>
                     </ul>
+                    
 
                 </section>
 
@@ -149,7 +159,7 @@ export default function ProjectsPage({ treatedProjects, pageCount }) {
 
                     <ReactPaginate
                         pageCount={pageCount}
-                        pageRangeDisplayed={1}
+                        pageRangeDisplayed={pageCount}
                         marginPagesDisplayed={2}
                         onPageChange={handlePageChange}
                         containerClassName={styles.container}
@@ -174,7 +184,12 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
     const response = await api.get('/projects')
     const { "x-total-count": count } = response.headers
-    const pageCount = Math.round(count / 8);
+    let pageCount = Math.round(count / 8);
+    let rest = count % 8
+
+    if(rest > 0){
+        pageCount += 1
+    }
 
     const treatedProjects = response.data.map((obj) => {
         return {

@@ -1,7 +1,8 @@
 .projectContainer{
     margin-top: 1.5rem;
     grid-area: projects;
-    width: 100%;
+    width: 50rem;
+    height: 15rem;
     display: grid;
     grid-template-areas: 
     "image infos";
@@ -12,10 +13,12 @@
     color: var(--text);
 
       img{
-        // width: 274px;
+        width: 100%;
+        height: 100%;
         border-radius: 4px 4px 0 0;
         grid-area: image;
         align-self: center;
+        object-fit: cover
       };
 
       .infosContainer{
