@@ -108,7 +108,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
       api.defaults.headers["Authorization"] = `Bearer ${token}`;
       toast.success('Iniciando a sessao');
-      Router.push("/dashboard");
+      Router.push("/projects");
     } catch {
       toast.error('Email ou senha invalidos');
     }

@@ -16,7 +16,7 @@ export const api = axios.create({
 api.interceptors.response.use(response => {
   return response
 }, (error: AxiosError )=> {
-  if(error.response.status === 404) {
+  if(error.response.status === 404 || error.response.status === 401) {
     if(process.browser) {
       signOut();
     }else {

@@ -1,6 +1,7 @@
 .container {
   display: flex;
   align-items: center;
+  position: relative;
 
   button {
     background: transparent;
@@ -26,5 +27,22 @@
 
   img{
     width: 50px;
+  }
+
+  .navigation{
+    position: absolute;
+    top: 3rem;
+    right: 8rem;
+    border-radius: 4px;
+    width: 130px;
+
+    background: var(--white);
+    padding: 0.5rem;
+    color: var(--text);
+
+    ul{
+      list-style: none;
+      line-height: 2rem;
+    }
   }
 }

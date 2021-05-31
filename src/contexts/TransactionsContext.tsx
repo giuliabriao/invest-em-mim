@@ -39,6 +39,15 @@ type TransactionProps = {
   receptor: number;
 }
 
+type NewProject = {
+  title: string;
+  description: string;
+  goal: string;
+  date_limit: string;
+  category: string;
+  user_id: string;
+}
+
 type ProjectsData = {
   myProjects: Projects[];
   myInvestments: Investment[];
@@ -48,10 +57,10 @@ type ProjectsData = {
   deleteProject(id: number): Promise<void>;
   setReload: (reload: boolean) => void;
   newTransaction(data: TransactionProps): Promise<void>;
+  newProject(data: NewProject): Promise<void>
   reload: boolean;
   isModalNewProjectOpen: boolean;
   setIsModalNewProjectOpen: (modal: boolean) => void;
-  
 };
 
 export const TransactionsContext = createContext({} as ProjectsData);
@@ -108,6 +117,22 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
     }
   }
 
+  async function newProject({ title, description, goal, date_limit, category, user_id}) {
+    try {
+      await api.post('/projects', {
+        title,
+        description,
+        goal,
+        date_limit,
+        category,
+        user_id
+      });
+      toast.success("Projeto criado com sucesso");
+    } catch {
+      toast.error("Ocorreu um erro, falha criar o projeto.");
+    }
+  }
+
 
 
   async function deleteProject(id) {
@@ -141,7 +166,8 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
         deleteProject,
         newTransaction,
         isModalNewProjectOpen, 
-        setIsModalNewProjectOpen
+        setIsModalNewProjectOpen,
+        newProject
       }}
     >
       {children}

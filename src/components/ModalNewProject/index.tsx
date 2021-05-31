@@ -1,4 +1,6 @@
-import { FormEvent, useState } from "react";
+import { parseCookies } from "nookies";
+import { FormEvent, useContext, useState } from "react";
+import { TransactionsContext } from "../../contexts/TransactionsContext";
 import styles from "./styles.module.scss";
 
 export function ModalNewProject() {
@@ -7,6 +9,9 @@ export function ModalNewProject() {
   const [goal, setGoal] = useState("");
   const [date_limit, setDate_limit] = useState("");
   const [category, setCategory] = useState("");
+  const { id } = parseCookies();
+
+  const { newProject, setReload, reload } = useContext(TransactionsContext)
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
@@ -16,11 +21,12 @@ export function ModalNewProject() {
       description,
       goal,
       date_limit,
-      category
+      category,
+      user_id: id
     };
     console.log(data)
-    //await editProject(data);
-    //setReload(!reload);
+    await newProject(data);
+    setReload(!reload);
   }
 
   return (
@@ -40,7 +46,7 @@ export function ModalNewProject() {
         ></textarea>
 
         <input 
-          type="text" 
+          type="number" 
           placeholder="Valor da meta do projeto" 
           value={goal}
           onChange={(e) => setGoal(e.target.value)}
@@ -56,12 +62,12 @@ export function ModalNewProject() {
           onChange={(e) => setDate_limit(e.target.value)}
         />
         
-        <select>
-          <option>startup</option>
-          <option>social</option>
-          <option>comercio</option>
-          <option>ambiental</option>
-          <option>animal</option>
+        <select onChange={(e) => setCategory(e.target.value)}>
+          <option value="startup">startup</option>
+          <option value="social">social</option>
+          <option value="comercio">comercio</option>
+          <option value="ambiental">ambiental</option>
+          <option value="animal">animal</option>
         </select>
 
         <button className={styles.btnSub}>Criar novo projeto</button>
