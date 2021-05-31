@@ -79,6 +79,7 @@ export default function Dashboard() {
             {myProjects.map((project) => {
               return (
                 <Recives
+                  key={project.id}
                   id={project.id}
                   title={project.title}
                   category={project.category}
@@ -104,6 +105,7 @@ export default function Dashboard() {
             {myInvestments.map((invest) => {
               return (
                 <Sends
+                  key={invest.id}
                   id={invest.id}
                   amount={invest.value}
                   date={invest.date}

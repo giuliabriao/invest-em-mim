@@ -34,6 +34,7 @@ export const AuthContext = createContext({} as AuthContextData);
 export function signOut() {
   destroyCookie(undefined, "invest.token");
   destroyCookie(undefined, "me");
+  destroyCookie(undefined, "id");
 
   Router.push("/");
 }

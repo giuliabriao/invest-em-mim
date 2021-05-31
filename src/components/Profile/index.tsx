@@ -37,7 +37,9 @@ export function Profile() {
               <a>Projetos</a>
             </Link>
           </li>
-          <li onClick={() => signOut()}>Sair</li>
+          <li onClick={() => signOut()}>
+            <button> Sair</button>
+          </li>
         </ul>
       </div>}
     </div>

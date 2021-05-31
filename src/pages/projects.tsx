@@ -9,6 +9,7 @@ import { ptBR } from 'date-fns/locale';
 import styles from "../styles/pages/projects.module.scss";
 import { useState } from "react";
 import ReactPaginate from 'react-paginate';
+import Link from "next/link";
 
 export default function ProjectsPage({ treatedProjects, pageCount }) {
 
@@ -143,7 +144,9 @@ export default function ProjectsPage({ treatedProjects, pageCount }) {
 
                     {projects.map(project => {
                         return (
-                            <Project
+                            <Link href={`/project/${project.id}`}>
+                              <a>
+                              <Project
                                 title={project.title}
                                 description={project.description.slice(0, 185)}
                                 category={project.category}
@@ -154,6 +157,8 @@ export default function ProjectsPage({ treatedProjects, pageCount }) {
                                 balance={project.balance}
                                 key={project.id}
                             />
+                              </a>
+                            </Link>
                         )
                     })}
 
