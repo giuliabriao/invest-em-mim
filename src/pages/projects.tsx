@@ -145,7 +145,7 @@ export default function ProjectsPage({ treatedProjects, pageCount }) {
                         return (
                             <Project
                                 title={project.title}
-                                description={project.description}
+                                description={project.description.slice(0, 185)}
                                 category={project.category}
                                 image={project.image}
                                 valuation={project.valuation}
@@ -195,7 +195,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
         return {
             id: obj.id,
             title: obj.title,
-            description: obj.description,
+            description: obj.description.slice(0, 185),
             category: obj.category,
             image: obj.image,
             valuation: obj.valuation,
