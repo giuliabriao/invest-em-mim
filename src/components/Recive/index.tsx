@@ -8,7 +8,18 @@ import { useContext, useState } from "react";
 import { ModalEdit } from "../ModalEdit";
 import { TransactionsContext } from "../../contexts/TransactionsContext";
 
-export function Recives(props) {
+type Recive = {
+  id: number;
+  title: string;
+  category: string;
+  balance: number;
+  description: string;
+  deleted: string;
+  create:string;
+  limit:string;
+}
+
+export function Recives(props: Recive) {
   const [isModalEditOpen, setIsModalEditOpen] = useState(false);
   const { deleteProject } = useContext(TransactionsContext);
 

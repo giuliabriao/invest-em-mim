@@ -1,6 +1,14 @@
 import styles from './styles.module.scss'
 
-export function Project(props) {
+type Project = {
+  title: string;
+  image: string;
+  description: string;
+  goal: number;
+  category: string;
+  balance: number;
+}
+export function Project(props: Project) {
   const projectProgress = (props.balance * 100)  / props.goal
 
   return (

@@ -3,7 +3,13 @@ import { ptBR } from "date-fns/locale";
 import styles from "./styles.module.scss";
 import { FaArrowAltCircleDown } from "react-icons/fa";
 
-export function Sends(props) {
+type Sends = {
+  id: number;
+  receptor: number;
+  date: string;
+  amount: number;
+}
+export function Sends(props: Sends) {
   return (
     <div className={styles.listProjects} key={props.id}>
       <p>{props.id}</p>

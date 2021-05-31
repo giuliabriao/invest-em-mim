@@ -1,6 +1,16 @@
 import styles from "./styles.module.scss";
 
-export function Spotlight(props) {
+type Spotlight = {
+  image: string;
+  title: string;
+  description: string
+  goal: number;
+  balance: number;
+  category: string;
+}
+
+
+export function Spotlight(props:Spotlight) {
   const progressGoal = (props.balance * 100) / props.goal;
 
   return (
