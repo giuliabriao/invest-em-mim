@@ -12,6 +12,24 @@ import { TransactionsContext } from "../contexts/TransactionsContext";
 import Head from "next/head";
 import { ModalNewProject } from "../components/ModalNewProject";
 
+type Project = {
+  id: number;
+  title: string;
+  category: string;
+  balance: number;
+  created_at: string;
+  date_limit: string;
+  description: string;
+  deleted_at: string;
+}
+
+type Investiments = {
+  id: number;
+  value: number;
+  date: string
+  receptor: number;
+}
+
 export default function Dashboard() {
   const [totals, setTotals] = useState(true);
   const { isModalNewProjectOpen, setIsModalNewProjectOpen, myProjects, myInvestments, totalReceipt, totalInvested } = useContext(TransactionsContext);
@@ -76,7 +94,7 @@ export default function Dashboard() {
               <p>Ações</p>
               <p>Deletar</p>
             </div>
-            {myProjects.map((project) => {
+            {myProjects.map((project: Project) => {
               return (
                 <Recives
                   key={project.id}
@@ -102,7 +120,7 @@ export default function Dashboard() {
               <p>Valor investido</p>
               <p>Status</p>
             </div>
-            {myInvestments.map((invest) => {
+            {myInvestments.map((invest: Investiments) => {
               return (
                 <Sends
                   key={invest.id}
