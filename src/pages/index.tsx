@@ -10,6 +10,18 @@ import { Spotlight } from "../components/Spotlight";
 import { api } from "../services/api";
 import styles from "../styles/pages/index.module.scss";
 import Link from 'next/link';
+
+type Project = {
+  id: number;
+  title: string;
+  description: string;
+  category: string;
+  image: string;
+  goal: number;
+  balance: number;
+}
+
+
 export default function Home({ spotlights }) {
   return (
     <>
@@ -21,7 +33,7 @@ export default function Home({ spotlights }) {
         <h1>Campanhas em destaque</h1>
 
         <div className={styles.cards}>
-          {spotlights.map((item) => {
+          {spotlights.map((item: Project) => {
             return (
               <Link href={`/project/${item.id}`}>
                 <a>
