@@ -57,10 +57,22 @@ type ProjectsData = {
   deleteProject(id: number): Promise<void>;
   setReload: (reload: boolean) => void;
   newTransaction(data: TransactionProps): Promise<void>;
-  newProject(data: NewProject): Promise<void>
+  newUser(data: NewUser): Promise<void>;
+  newProject(data: NewProject): Promise<void>;
   reload: boolean;
   isModalNewProjectOpen: boolean;
   setIsModalNewProjectOpen: (modal: boolean) => void;
+  setTsModalSingUpOpen: (isModalSingUpOpen: boolean) => void;
+  isModalSingUpOpen: boolean;
+};
+
+type NewUser = {
+  email: string;
+  firstName: string;
+  lastName: string;
+  username: string;
+  birth: string;
+  password: string;
 };
 
 export const TransactionsContext = createContext({} as ProjectsData);
@@ -69,7 +81,8 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
   const [myProjects, setMyProject] = useState([]);
   const [myInvestments, setMyInvestments] = useState([]);
   const [reload, setReload] = useState(false);
-  const [ isModalNewProjectOpen, setIsModalNewProjectOpen] = useState(false);
+  const [isModalNewProjectOpen, setIsModalNewProjectOpen] = useState(false);
+  const [isModalSingUpOpen, setTsModalSingUpOpen] = useState(false);
 
   useEffect(() => {
     const { id } = parseCookies();
@@ -114,6 +127,29 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
       toast.success("Transação efetuada com sucesso");
     } catch {
       toast.error("Ocorreu um erro, falha na transação.");
+    }
+  }
+
+  async function newUser({
+    email,
+    firstName,
+    lastName,
+    username,
+    birth,
+    password,
+  }) {
+    try {
+      await api.post("/users", {
+        email,
+        firstName,
+        lastName,
+        username,
+        birth,
+        password,
+      });
+      toast.success("Cadastro efetuad com sucesso");
+    } catch {
+      toast.error("Ocorreu um erro, tente novamente.");
     }
   }
 
@@ -165,9 +201,12 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
         reload,
         deleteProject,
         newTransaction,
-        isModalNewProjectOpen, 
+        isModalNewProjectOpen,
         setIsModalNewProjectOpen,
-        newProject
+        newProject,
+        newUser,
+        setTsModalSingUpOpen,
+        isModalSingUpOpen
       }}
     >
       {children}

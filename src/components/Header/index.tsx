@@ -1,17 +1,17 @@
 import Link from "next/link";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
+import { TransactionsContext } from "../../contexts/TransactionsContext";
 import { Profile } from "../Profile";
 import { SignIn } from "../SignIn";
+import { SignUp } from "../SignUp";
 import styles from "./styles.module.scss";
 
 export function Header() {
   const { user } = useContext(AuthContext);
   const [modalSignIn, setModalSignIn] = useState(false);
-
-  function handleClickSignIn() {
-    setModalSignIn(true);
-  }
+  const { setTsModalSingUpOpen, isModalSingUpOpen } =
+    useContext(TransactionsContext);
 
   return (
     <div className={styles.container}>
@@ -34,13 +34,19 @@ export function Header() {
             <div>
               <button
                 className={styles.headerButton}
-                onClick={handleClickSignIn}
+                onClick={() => setModalSignIn(true)}
               >
                 Login
               </button>
-              <button className={styles.headerButton}>Cadastrar</button>
+              <button
+                className={styles.headerButton}
+                onClick={() => setTsModalSingUpOpen(true)}
+              >
+                Cadastrar
+              </button>
             </div>
-            {modalSignIn ? <SignIn /> : ""}
+            {modalSignIn && <SignIn />}
+            {isModalSingUpOpen && <SignUp />}
           </div>
         )}
       </nav>

@@ -31,7 +31,7 @@ export function SignIn() {
       <div className={styles.login}>
         <span>
           <img src="/icons/mascote.png" alt="" />
-          <p>Faça o Login</p>
+          <p>Cadastre-se</p>
         </span>
 
         <form onSubmit={handleSubmit}>
